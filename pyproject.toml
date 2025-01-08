@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "mqtt-enricher"
+version = "0.1.0"
+description = ""
+authors = ["Pablo Nuñez Pölcher <pablo@pablopolcher.dev>"]
+readme = "README.md"
+packages = [{include = "mqtt_enricher"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+paho-mqtt = "^2.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
