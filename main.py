@@ -32,9 +32,9 @@ class TimestampEnricher(mqtt.Client):
                 'timestamp': int(time.time()),
                 'value': data,
             }
-        print(f"Formatted message: {data}, topic: {message.topic}")
+        logger.debug("Formatted message: %s, topic: %s" % (data, message.topic))
 
-        target_subtopic = message.topic.removeprefix(self._source_topic[:-2])
+        target_subtopic = message.topic.removeprefix(message.topic[:-2])
         target_topic = self._target_topic + target_subtopic
 
         client.publish(target_topic, json.dumps(data))
