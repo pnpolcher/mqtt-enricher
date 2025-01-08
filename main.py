@@ -38,7 +38,7 @@ class TimestampEnricher(mqtt.Client):
         target_topic = self._target_topic + target_subtopic
 
         client.publish(target_topic, json.dumps(data))
-        print(f"Published message to topic: {target_topic}")
+        logger.info(f"Published message to topic: {target_topic}")
 
     def on_subscribe(self, client: mqtt.Client, userdata: Any, mid: int, reason_code_list, properties):
         logger.info("Subscribed to topic %s" % self._topics_by_mid[mid])
@@ -54,7 +54,7 @@ class TimestampEnricher(mqtt.Client):
     def run(self, host: str, port: int, username: str, password: str):
         self._register_signals()
         self.username_pw_set(username, password)
-        print(self.connect(host, port))
+        self.connect(host, port)
         logger.info("Connected to Mosquitto server at %s:%d" % (host, port))
 
         for topic in self._source_topics:
